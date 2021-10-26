@@ -1,0 +1,39 @@
+package hisAvg
+
+import com.jgj.drools.domain.UserInfo
+
+rule "hisAvg_01"
+    no-loop true
+    when
+        $user:UserInfo(nature contains "A")
+    then
+        $user.setServiceName("hisAvgRule01ServiceImpl");
+        update($user);
+end
+
+rule "hisAvg_02"
+    no-loop true
+    when
+        $user:UserInfo(nature contains "B")
+    then
+        $user.setServiceName("hisAvgRule02ServiceImpl");
+        update($user);
+end
+
+rule "hisAvg_03"
+    no-loop true
+    when
+        $user:UserInfo(nature contains "C")
+    then
+        $user.setServiceName("hisAvgRule03ServiceImpl");
+        update($user);
+end
+
+rule "hisAvg_04"
+    no-loop true
+    when
+        $user:UserInfo(true)
+    then
+        $user.setServiceName("hisAvgRuleServiceImpl");
+        update($user);
+end

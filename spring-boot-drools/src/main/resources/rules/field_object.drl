@@ -1,0 +1,20 @@
+package rules.field.object
+
+import com.jgj.drools.dto.UserInfoItemDTO
+import com.jgj.drools.domain.UserInfo
+import java.util.List
+import java.util.Map
+import java.util.Set
+
+function void setServiceIdMap(UserInfoItemDTO uiid){
+    Map<String, Set<Long>> map = uiid.getServiceIdMap();
+    map.get("01").add(1L);
+}
+
+rule "field_object"
+    no-loop true
+    when
+        $uiid:UserInfoItemDTO($user:userInfo!=null && $user.nature=="A")
+    then
+        setServiceIdMap($uiid);
+end
